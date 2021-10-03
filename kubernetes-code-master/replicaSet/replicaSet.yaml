@@ -1,0 +1,22 @@
+apiVersion: apps/v1
+kind: ReplicaSet
+metadata: 
+  name: sales-app
+  namespace: development
+spec:
+  replicas: 3
+  selector:
+    matchLabels:
+      app: my-replica
+  template:
+    metadata:
+      labels:
+        app: my-replica
+    spec:
+      containers:
+      - name: nginx-rs
+        image: nginx:latest
+        resources:
+          limits:
+            cpu: 200m
+            memory: "105Mi"
